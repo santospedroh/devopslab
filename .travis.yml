@@ -1,3 +1,8 @@
+# Definições de SO
+
+dist: xenial
+os: linux
+
 # Linguagem Utilizada para Desenvolver a Aplicação                                                                                                                                                       
 language: python                                                                                                                                                          
 
@@ -19,5 +24,6 @@ deploy:
   api_key: $HEROKU_API_KEY
   edge: true 
   app: devopslab-pedro
+  strategy: api
   on:
       branch: main
