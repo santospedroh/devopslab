@@ -13,7 +13,7 @@ python:
 install:                                                                                                                                                                                                 
   - pip install flask 
 
-# Defini o script de Teste que deve rodar toda vez que o código for alterado.                                                                                                                            
+# Defini o script de Teste que deve rodar toda vez que o código for alterado...                                                                                                                            
 script:                                                                                                                                                                                                  
   - python -m unittest -v test || travis_terminate 1;
 
