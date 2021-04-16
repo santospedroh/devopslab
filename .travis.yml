@@ -1,5 +1,4 @@
 # Definições de SO
-
 dist: xenial
 os: linux
 
@@ -29,7 +28,6 @@ script:
   - sonar-scanner || travis_terminate 1;
 
 # Definir o Deploy no Heroku
-
 deploy:
   provider: heroku
   api_key: $HEROKU_API_KEY
@@ -38,3 +36,8 @@ deploy:
   strategy: api
   on:
       branch: main
+
+# Travis Slack
+notifications:
+  slack:
+    secure: mcssnrEGTRld8MKSyB4FtINImqSDxc6qW+ZTlq3hSOhP9QS7iCsC2QKTflYW8ZjJzDePRT8MBe6yYdbQ05MxpBtHktJoTGU6u3MOeBB1pAb77sszlbvhRKy0wAe8zZpC8boHDvog4361oqQGyKXDZ0rQg4lD4vNoaA3p/wTgrGg/JrB7ct2oQrd3598ccivvtoKficCJ0v7oGnzWESojIO504WfTaZy1toorXXkuYa7W98APcjiRkuJCFKgeC1Ws9LRYf3H+gBErGrg33Epv/0CfKRJ2DsT2/13eIuZhFdN01x5vCKbeOOheLmcST86ZgwiwbMh50pq5OdP5KFC2pGGAFvgGtQUu64p15n3dww8Evkomrtbg8ftoIw02GH/Gx+n+wrK8TRJrEGr8sTaFL33Wjk4TVuo19l1VSFKQpGUH4UGOCzOPeLjki97B69eV+cd5tk9ZCAy6xLapbbVHey5YH4VELrLHTOgTYY49ZwxaSeOCvWjx11DaTyLpsaIsL6h/l5S2lXDVGbHrXq/FI6w8Nk09IMHWNa/BTcK1CJx4j7QFUwfkhJ2UiWNhBu1oURLhATxLTRloscK9oBO67DbDWnH/1hqh0vwM/IYCiMApI9GnexAkqH/pZ0KSgLusfJUddzrre81ZtzyJVKyKRkBeAKG/wkP5KW8W+DWeotA=
