@@ -24,7 +24,7 @@ jobs:
         - coverage xml app.py || travis_terminate 1;
       workspaces:
         create:
-          name: coverage
+          name: "coverage"
           paths:
             - coverage.xml
 
@@ -34,7 +34,7 @@ jobs:
       script:
         - sonar-scanner || travis_terminate 1;
       workspaces:
-        use: coverage
+        use: "coverage"
       addons:
         sonarcloud:
           organization: santospedroh
