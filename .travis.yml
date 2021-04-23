@@ -11,8 +11,9 @@ python:
 
 jobs:
   include:
-    - stage: Testes
 
+    # Teste pytest
+    - stage: Testes
       name: "Testes Unitarios"
       # Instalação de Módulos que são necessários para a Aplicação.
       install:
@@ -21,18 +22,39 @@ jobs:
         - coverage run test.py || travis_terminate 1;
         - coverage report app.py || travis_terminate 1;
         - coverage xml app.py || travis_terminate 1;
+      workspaces:
+        create:
+          name: coverage
+          paths:
+            - coverage.xml
 
-    - script:
-        - sonar-scanner || travis_terminate 1;
+    # Teste Sonar
+    - stage: Testes
       name: "Testes de Qualidade e Seguranca"
+      script:
+        - sonar-scanner || travis_terminate 1;
+      workspaces:
+        use: coverage
       addons:
         sonarcloud:
           organization: santospedroh
           token: ${SONAR_TOKEN}
 
-    - stage: Deploy
-      script: skip
-      # Definir o Deploy no Heroku
+    # Definir o STG Deploy no Heroku
+    - stage: Stage Deploy
+      script: skip      
+      deploy:
+        provider: heroku
+        strategy: api
+        api_key: $HEROKU_API_KEY
+        edge: true
+        app: devopslab-pedro-stg
+        on:
+          branch: main
+
+    # Definir o PROD Deploy no Heroku
+    - stage: Production Deploy
+      script: skip      
       deploy:
         provider: heroku
         strategy: api
@@ -42,9 +64,9 @@ jobs:
         on:
           branch: main
 
-      # Travis Slack
-      notifications:
-        slack:
-          secure: nnRHCQ1ppxZjb38byzAzuc8QWz2yMSzFIVmq3R3W7+lLa18srhY4v0oUCyljhCEMVgTSUg8FT4XNpSZBYjU5jcKg1Icz7x+LVoyIse+YmNL9+2N3wOxPLLttqS6paWwn9WJuwSjlzfnhyfmgO3TeV9ynlmb+2p6dWE7jgcfcF2beLhao3CnEPp+LyC1LbtruRHHUqxbobx0ccLKzhnmr/Hqb1FIy8KFdAhistzFqgcLN78us9acOnm3V+aRph8aXJfUb/8TlQdfM0frCGqi3avU236SQcMj849kRmiXBAY/WI6C+8P2Iw6DCl+0K5MdEic4/mxEEuRM+oP/M3Z9UpfExIKFPH0YYXK7du1cUbkEm76ACXK+9OJAKPHHq9n6RDdg13DzzyOh2AuxO0XopUzBiXzkB/IQMvEb98+t4W342a//ZkNL7h5qYl/uG8ceXD3QC0Sl5XAPllAiFt1iC/rkdtOoBXv3LCMzQ5VAdAdaQIZhjOXPrzFIvvcSX6qYsLCLyTZAvEOufUs60ypuAOKEtSDCgwIPS3RzPWatp3dfZR2P5PDLzI268UPNAkATnO0jqNQEEPQflbojW0LegJLp6k9gJA4PiI5T94yfYDxukAHvv+F5iFgvm0pbUdph3S/ZtcGQ7ZPt+aqEIiZhY8Qt3UgKM20aMTwd2uq/ACVY=
-          on_success: always
-          on_failure: always
+# Travis Slack
+notifications:
+  slack:
+    secure: nnRHCQ1ppxZjb38byzAzuc8QWz2yMSzFIVmq3R3W7+lLa18srhY4v0oUCyljhCEMVgTSUg8FT4XNpSZBYjU5jcKg1Icz7x+LVoyIse+YmNL9+2N3wOxPLLttqS6paWwn9WJuwSjlzfnhyfmgO3TeV9ynlmb+2p6dWE7jgcfcF2beLhao3CnEPp+LyC1LbtruRHHUqxbobx0ccLKzhnmr/Hqb1FIy8KFdAhistzFqgcLN78us9acOnm3V+aRph8aXJfUb/8TlQdfM0frCGqi3avU236SQcMj849kRmiXBAY/WI6C+8P2Iw6DCl+0K5MdEic4/mxEEuRM+oP/M3Z9UpfExIKFPH0YYXK7du1cUbkEm76ACXK+9OJAKPHHq9n6RDdg13DzzyOh2AuxO0XopUzBiXzkB/IQMvEb98+t4W342a//ZkNL7h5qYl/uG8ceXD3QC0Sl5XAPllAiFt1iC/rkdtOoBXv3LCMzQ5VAdAdaQIZhjOXPrzFIvvcSX6qYsLCLyTZAvEOufUs60ypuAOKEtSDCgwIPS3RzPWatp3dfZR2P5PDLzI268UPNAkATnO0jqNQEEPQflbojW0LegJLp6k9gJA4PiI5T94yfYDxukAHvv+F5iFgvm0pbUdph3S/ZtcGQ7ZPt+aqEIiZhY8Qt3UgKM20aMTwd2uq/ACVY=
+    on_success: always
+    on_failure: always
