@@ -13,7 +13,7 @@ jobs:
   include:
 
     # Teste pytest
-    - stage: Testes
+    - stage: Teste
       name: "Testes Unitarios"
       # Instalação de Módulos que são necessários para a Aplicação.
       install:
@@ -29,7 +29,7 @@ jobs:
             - coverage.xml
 
     # Teste Sonar
-    - stage: Testes
+    - stage: Teste
       name: "Testes de Qualidade e Seguranca"
       script:
         - sonar-scanner || travis_terminate 1;
