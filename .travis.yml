@@ -45,9 +45,8 @@ jobs:
       script: skip      
       deploy:
         provider: heroku
-        strategy: api
-        api_key: $HEROKU_API_KEY
-        edge: true
+        api_key:
+          secure: pN216dhnAaiXhCDoXI0SVuuaaF5U3BDi4rJqQkNyP2uc5UGk1Bmks+hn5eYMlywKi7sl38y6EktMelwmt0QffIgsbWntXo2qvtrtpknYtRuXnp5XyqscwBfwZtSccV8mt72ltUOLSYm3whjarlqDi0xHLK/bRDG8D3EZj9XGTJmqBl/67WdPVLckON3M30KONemvfJ51jWh/L///niRw5NNeCfFk8ZQE8ZS2QKYYnIdBlnBj/Zha9cy7Nk5zcI10NnvYHNzgLfKM+vgHFvHSI8AobB5S09ntXG2KK4s3A12/Ma/hnOCp9U4cT7gOU21vM6/7OsEs9Q71UH17N2AtGAplFq5FNBUWkiZ+PNGJ69Hro3mE9eWm/5VtnfCn51iq6GjvIMGiVneD4ptB/hLAGDexMpNbnRPb2qBWBetJ6VyCa+LKv4NyQ8dgXQd+H20teEutW5BM42cvFaZDNVxKXExK690YCm9II2Hxt61L2tbzdr/Quy40ykrG9d5F62ezzsaVrIcT+Er/xzExYeFPBQ9Y/dQ/Cqkzcfvb6Rz8j7JQWnRJwy2+a86eJxiBA73fVstWCwVFdKfW2mmFFIb4zdhni17QE+yHxbmWP2ncMRp2u+bHqDb1867pN8N3qzRiPGTAjrWEkJHtNJscKB1mjn/WK936howUuuAQkC5wjkk=
         app: devopslab-pedro-stg
         on:
           branch: main
@@ -58,8 +57,8 @@ jobs:
       deploy:
         provider: heroku
         strategy: api
-        api_key: $HEROKU_API_KEY
-        edge: true
+        api_key:
+          secure: pN216dhnAaiXhCDoXI0SVuuaaF5U3BDi4rJqQkNyP2uc5UGk1Bmks+hn5eYMlywKi7sl38y6EktMelwmt0QffIgsbWntXo2qvtrtpknYtRuXnp5XyqscwBfwZtSccV8mt72ltUOLSYm3whjarlqDi0xHLK/bRDG8D3EZj9XGTJmqBl/67WdPVLckON3M30KONemvfJ51jWh/L///niRw5NNeCfFk8ZQE8ZS2QKYYnIdBlnBj/Zha9cy7Nk5zcI10NnvYHNzgLfKM+vgHFvHSI8AobB5S09ntXG2KK4s3A12/Ma/hnOCp9U4cT7gOU21vM6/7OsEs9Q71UH17N2AtGAplFq5FNBUWkiZ+PNGJ69Hro3mE9eWm/5VtnfCn51iq6GjvIMGiVneD4ptB/hLAGDexMpNbnRPb2qBWBetJ6VyCa+LKv4NyQ8dgXQd+H20teEutW5BM42cvFaZDNVxKXExK690YCm9II2Hxt61L2tbzdr/Quy40ykrG9d5F62ezzsaVrIcT+Er/xzExYeFPBQ9Y/dQ/Cqkzcfvb6Rz8j7JQWnRJwy2+a86eJxiBA73fVstWCwVFdKfW2mmFFIb4zdhni17QE+yHxbmWP2ncMRp2u+bHqDb1867pN8N3qzRiPGTAjrWEkJHtNJscKB1mjn/WK936howUuuAQkC5wjkk=
         app: devopslab-pedro
         on:
           branch: main
